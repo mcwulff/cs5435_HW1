@@ -1,5 +1,7 @@
 from csv import reader
 
+#test
+
 COMMON_PASSWORDS_PATH = 'common_passwords.txt'
 SALTED_BREACH_PATH = "app/scripts/breaches/salted_breach.csv"
 
