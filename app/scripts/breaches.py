@@ -19,6 +19,7 @@ def load_breaches(db):
             create_plaintext_breach_entry(db, creds[0], creds[1])
 
     with open(HASHED_BREACH_PATH) as f:
+        print('hashed')
         r = reader(f, delimiter=' ')
         header = next(r)
         assert(header[0] == 'username')
@@ -27,6 +28,7 @@ def load_breaches(db):
             
 
     with open(SALTED_BREACH_PATH) as f:
+        print('salt')
         r = reader(f, delimiter=' ')
         header = next(r)
         assert(header[0] == 'username')
