@@ -16,7 +16,6 @@ def load_breaches(db):
         header = next(r)
         assert(header[0] == 'username')
         for creds in r:
-            print(creds)
             create_plaintext_breach_entry(db, creds[0], creds[1])
 
     with open(HASHED_BREACH_PATH) as f:

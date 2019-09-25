@@ -18,7 +18,7 @@ from app.models.session import (
 from app.models.breaches import get_breaches
 from app.scripts.breaches import load_breaches
 
-from app.util.hash import (hash_sha256, hash_pbkdf2)
+from app.util.hash import (hash_sha256, hash_pbkdf2, random_salt)
 
 
 @get('/login')
@@ -31,6 +31,8 @@ def do_login(db):
     password = request.forms.get('password')
     error = None
     user = get_user(db, username)
+    #Mine
+    password = hash_pbkdf2(password, user.salt)
     print(user)
     if (request.forms.get("login")):
         if user is None:
@@ -66,8 +68,8 @@ def do_login(db):
                 #error = "User/Password Combo Found in Breach"
 
  ###################### My Code #############################################           
-
-        create_user(db, username, password)
+ ##Mine
+        create_user(db, username, password, random_salt())
     else:
         response.status = 400
         error = "Submission error."
