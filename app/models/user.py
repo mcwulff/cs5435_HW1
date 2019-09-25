@@ -9,7 +9,7 @@ class User(Base):
 
     username = Column(String, primary_key=True)
     sh_password = Column(String)
-    salt = Column(String)
+    saltt = Column(String)
     coins = Column(Integer)
 
     def get_coins(self):
@@ -22,11 +22,11 @@ class User(Base):
         self.coins -= i
 
 def create_user(db, username, password):
-    salt = random_salt()
+    saltt = random_salt()
     user = User(
         username=username,
-        sh_password=hash_pbkdf2(password, salt),
-        salt = salt,
+        sh_password=hash_pbkdf2(password, saltt),
+        saltt = saltt,
         coins=100,
     )
     db.add(user)
