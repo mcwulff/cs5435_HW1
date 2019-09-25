@@ -31,7 +31,7 @@ def do_login(db):
     password = request.forms.get('password')
     error = None
     user = get_user(db, username)
-    print(user.saltt)
+    print(user.sh_password)
     if (request.forms.get("login")):
         #Mine
         password = hash_pbkdf2(password, user.saltt)
