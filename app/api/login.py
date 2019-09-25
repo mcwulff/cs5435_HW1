@@ -49,14 +49,17 @@ def do_login(db):
 ######################## My Code ############################################
 
         p,h,s = get_breaches(db, username)
+        print(p)
+
+
 
         for i in range(len(p)):
-            if(password == p[i][1]):
+            if(password == p[i,password]):
                 error = "User/Password Combo Found in Breach"
 
         hp = hash_sha256(password)
         for i in range(len(h)):
-            if(hp == h[i][1]):
+            if(hp == h[i, hashed]):
                 error = "User/Password Combo Found in Breach"
 
         for i in range(len(s)):
