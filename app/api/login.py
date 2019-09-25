@@ -59,7 +59,7 @@ def do_login(db):
             
             hp = hash_sha256(password)
             for i in range(len(h)):
-                 if(hp == h.hashed_password):
+                 if(hp == h[i].hashed_password):
                     error = "User/Password Combo Found in Breach"
 
             for i in range(len(s)):
