@@ -52,19 +52,19 @@ def do_login(db):
             print(len(h))
             print(len(s))
    
-            if (p is not []):
-                print("HEREEE", p)
-                if( password == p.password):
+            for i in range(len(p)):
+                print(i)
+                if( password == p[i].password):
                     error = "User/Password Combo Found in Breach"
             
             hp = hash_sha256(password)
-            if (h is not []):
+            for i in range(len(h)):
                  if(hp == h.hashed_password):
                     error = "User/Password Combo Found in Breach"
 
-            if (s is not []):
-                sp =  hash_pbkdf2(password, s.salt)
-                if(sp == s.salted_password):
+            for i in range(len(s)):
+                sp =  hash_pbkdf2(password, s[i].salt)
+                if(sp == s[i].salted_password):
                    error = "User/Password Combo Found in Breach"
 
  ###################### My Code #############################################    
