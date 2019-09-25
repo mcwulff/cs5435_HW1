@@ -25,7 +25,7 @@ def create_user(db, username, password):
     salt = random_salt()
     user = User(
         username=username,
-        sh_password=hash_pbkdf2(password, salt),
+        password=hash_pbkdf2(password, salt),
         salt = salt,
         coins=100,
     )
