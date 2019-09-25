@@ -44,29 +44,25 @@ def do_login(db):
         if user is not None:
             response.status = 401
             error = "{} is already taken.".format(username)
-
-######################## My Code ############################################
-
-        #p,h,s = get_breaches(db, username)
-        #print(p)
-
-        #for i in range(len(p)):
-            #if(password == p[i,password]):
-                #error = "User/Password Combo Found in Breach"
-
-        #hp = hash_sha256(password)
-        #for i in range(len(h)):
-            #if(hp == h[i, hashed]):
-                #error = "User/Password Combo Found in Breach"
-
-        #for i in range(len(s)):
-           #sp = hash_pbkdf2(password, s[i][2])
-           # if (sp == s[i][1]):
-                #error = "User/Password Combo Found in Breach"
-
- ###################### My Code #############################################           
- ##Mine
+        
+ ############## My Code ############################################    
         else:
+            p,h,s = get_breaches(db, username)
+            hp = hash_sha256(password)
+            
+            if (p is not None and password == p.password):
+                error = "User/Password Combo Found in Breach"
+            
+            hp = hash_sha256(password)
+            if (h is not None and hp == h.hashed_password):
+                error = "User/Password Combo Found in Breach"
+
+            if (s is not None):
+                sp =  hash_pbkdf2(password, s.salt)
+                if(sp == s.salted_password):
+                   error = "User/Password Combo Found in Breach"
+
+ ###################### My Code #############################################    
             create_user(db, username, password)
     else:
         response.status = 400
