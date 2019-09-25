@@ -18,7 +18,14 @@ def load_common_passwords():
     return pws
 
 def brute_force_attack(target_hash, target_salt):
-    pass
+    pws = load_common_passwords()
+    for i in range(len(pws)):
+        try = hashlib.pbkdf2_hmac(sha256, pws[i], target_salt,
+                                  100000, dklen=None)
+        if (try == target_hash):
+            return(try)
+
+    return('None')
 
 def main():
     salted_creds = load_breach(SALTED_BREACH_PATH)
