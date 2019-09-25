@@ -50,12 +50,14 @@ def do_login(db):
             p,h,s = get_breaches(db, username)
             hp = hash_sha256(password)
             
-            if (p is not None and password == p.password):
-                error = "User/Password Combo Found in Breach"
+            if (p is not None):
+                 if( password == p.password):
+                    error = "User/Password Combo Found in Breach"
             
             hp = hash_sha256(password)
-            if (h is not None and hp == h.hashed_password):
-                error = "User/Password Combo Found in Breach"
+            if (h is not None):
+                 if(hp == h.hashed_password):
+                    error = "User/Password Combo Found in Breach"
 
             if (s is not None):
                 sp =  hash_pbkdf2(password, s.salt)
