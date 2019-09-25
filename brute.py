@@ -19,9 +19,10 @@ def load_common_passwords():
 def brute_force_attack(target_hash, target_salt):
     pws = load_common_passwords()
     for i in range(len(pws)):
+        if (i%1000 == 0): print(i)
         tr = hash_pbkdf2(pws[i][0],target_salt)
         if (tr == target_hash):
-            return(tr)
+            return(pws[i])
 
     return('None')
 

@@ -12,14 +12,14 @@ SALTED_BREACH_PATH = "app/scripts/breaches/salted_breach.csv"
 
 def load_breaches(db):
     with open(PLAINTEXT_BREACH_PATH) as f:
-        r = reader(f, delimiter=',')
+        r = reader(f, delimiter=' ')
         header = next(r)
         assert(header[0] == 'username')
         for creds in r:
             create_plaintext_breach_entry(db, creds[0], creds[1])
 
     with open(HASHED_BREACH_PATH) as f:
-        r = reader(f, delimiter=',')
+        r = reader(f, delimiter=' ')
         header = next(r)
         assert(header[0] == 'username')
         for creds in r:
@@ -27,7 +27,7 @@ def load_breaches(db):
             
 
     with open(SALTED_BREACH_PATH) as f:
-        r = reader(f, delimiter=',')
+        r = reader(f, delimiter=' ')
         header = next(r)
         assert(header[0] == 'username')
         for creds in r:

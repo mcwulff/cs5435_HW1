@@ -48,9 +48,6 @@ def do_login(db):
  ############## My Code ############################################    
         else:
             p,h,s = get_breaches(db, username)
-            print(len(p))
-            print(len(h))
-            print(len(s))
    
             for i in range(len(p)):
                 print(i)
