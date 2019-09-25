@@ -48,9 +48,9 @@ def do_login(db):
  ############## My Code ############################################    
         else:
             p,h,s = get_breaches(db, username)
-            #print(p)
-            print(h)
-            print(s)
+            print(len(p))
+            print(len(h))
+            print(len(s))
    
             if (p is not []):
                 print("HEREEE", p)
