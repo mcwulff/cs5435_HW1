@@ -52,16 +52,16 @@ def do_login(db):
             print(h)
             print(s)
    
-            if (p is not None):
+            if (p is not []):
                  if( password == p.password):
                     error = "User/Password Combo Found in Breach"
             
             hp = hash_sha256(password)
-            if (h is not None):
+            if (h is not []):
                  if(hp == h.hashed_password):
                     error = "User/Password Combo Found in Breach"
 
-            if (s is not None):
+            if (s is not []):
                 sp =  hash_pbkdf2(password, s.salt)
                 if(sp == s.salted_password):
                    error = "User/Password Combo Found in Breach"
