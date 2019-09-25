@@ -31,14 +31,11 @@ def do_login(db):
     password = request.forms.get('password')
     error = None
     user = get_user(db, username)
-    print(user.password)
     if (request.forms.get("login")):
-        #Mine
-        password = hash_pbkdf2(password, user.saltt)
         if user is None:
             response.status = 401
-            error = "{} is not registered.".format(username)
-        elif user.password != password:
+            error = "{} is not registered.".format(username)  
+        elif user.password != hash_pbkdf2(password, user.salt):
             response.status = 401
             error = "Wrong password for {}.".format(username)
         else:
