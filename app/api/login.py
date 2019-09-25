@@ -15,6 +15,11 @@ from app.models.session import (
     logged_in,
 )
 
+from app.models.breaches import get_breaches
+from app.scripts.breaches import load_breaches
+
+from app.util.hash import (hash_sha256, hash_pbkdf2)
+
 
 @get('/login')
 def login():
@@ -40,6 +45,27 @@ def do_login(db):
         if user is not None:
             response.status = 401
             error = "{} is already taken.".format(username)
+
+######################## My Code ############################################
+
+        p,h,s = get_breaches(db, username)
+
+        for i in range(len(p)):
+            if(password == p[i][1]):
+                error = "User/Password Combo Found in Breach"
+
+        hp = hash_sha256(password)
+        for i in range(len(h)):
+            if(hp == h[i][1]):
+                error = "User/Password Combo Found in Breach"
+
+        for i in range(len(s)):
+            sp = hash_pbkdf2(password, s[i][2])
+            if (sp == s[i][1]):
+                error = "User/Password Combo Found in Breach"
+
+ ###################### My Code #############################################           
+
         else:
             create_user(db, username, password)
     else:
