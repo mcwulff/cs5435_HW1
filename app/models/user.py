@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String
 
 from app.models.base import Base
 
-from app.util.hash import hash_pbkdf2
+from app.util.hash import (hash_pbkdf2, random_salt)
 
 class User(Base):
     __tablename__ = "users"
@@ -21,7 +21,8 @@ class User(Base):
     def debit_coins(self, i):
         self.coins -= i
 
-def create_user(db, username, password, salt):
+def create_user(db, username, password):
+    salt = random_salt()
     user = User(
         username=username,
         sh_password=hash_pbkdf2(password, salt),

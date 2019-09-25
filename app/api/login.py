@@ -50,8 +50,8 @@ def do_login(db):
 
 ######################## My Code ############################################
 
-        p,h,s = get_breaches(db, username)
-        print(p)
+        #p,h,s = get_breaches(db, username)
+        #print(p)
 
         #for i in range(len(p)):
             #if(password == p[i,password]):
@@ -69,7 +69,7 @@ def do_login(db):
 
  ###################### My Code #############################################           
  ##Mine
-        create_user(db, username, password, random_salt())
+        create_user(db, username, password)
     else:
         response.status = 400
         error = "Submission error."
